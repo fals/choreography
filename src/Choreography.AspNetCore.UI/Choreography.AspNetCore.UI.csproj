@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Description>Middleware to expose an embedded version of the choreography-ui from an ASP.NET Core application</Description>
+		<TargetFrameworks>netstandard2.0;netcoreapp3.0;net5.0</TargetFrameworks>
+		<NoWarn>$(NoWarn);1591</NoWarn>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<AssemblyName>Choreography.AspNetCore.UI</AssemblyName>
+		<!--<AssemblyOriginatorKeyFile>Swashbuckle.AspNetCore.SwaggerUI.snk</AssemblyOriginatorKeyFile>-->
+		<!--<SignAssembly Condition="'$(OS)'=='Windows_NT'">true</SignAssembly>-->
+		<PackageId>Choreography.AspNetCore.UI</PackageId>
+		<PackageTags>choreography;documentation;discovery;help;events;aspnet;aspnetcore;eda;eventdriven</PackageTags>
+		<PackageProjectUrl>https://github.com/fals/choreography</PackageProjectUrl>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/fals/choreography.git</RepositoryUrl>
+	</PropertyGroup>
+
+	<!-- Use Visual Studio npm package if it is installed. -->
+	<PropertyGroup Condition="Exists('$(VsInstallRoot)\Web\External\npm.cmd')">
+		<Path>$(Path)$(VsInstallRoot)\Web\External\;</Path>
+	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="index.html" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="index.html" />
+		<EmbeddedResource Include="node_modules/bootstrap/**/*" Exclude="**/*/*.map;**/*/*.json;**/*/*.md" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+		<PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.1.0" />
+		<PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.0" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="2.1.0" />
+		<PackageReference Include="System.Text.Json" Version="4.6.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' != 'netstandard2.0' ">
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<Target Name="NpmInstall" BeforeTargets="Build">
+		<Exec Command="npm install" EnvironmentVariables="PATH=$(Path.Replace(';', '%3B'))" ContinueOnError="true">
+			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+		</Exec>
+		<Error Condition="'$(ErrorCode)' != '0'" Text="Node.js/npm is required to build this project. To continue, please install Node.js from https://nodejs.org/ or Visual Studio Installer, and then restart your command prompt or IDE." />
+	</Target>
+
+</Project>
