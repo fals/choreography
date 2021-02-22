@@ -1,10 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Choreography.AspNetCore.UI;
 
-namespace Choreography.AspNetCore.UI
+namespace Microsoft.AspNetCore.Builder
 {
-    class ChoreographyExtensions
+    public static class ChoreographyExtensions
     {
+        /// <summary>
+        /// Register the ChoreographyUI middleware with provided options
+        /// </summary>
+        public static IApplicationBuilder UseChoreographyUI(this IApplicationBuilder app, ChoreographyOptions options)
+        {
+            return app.UseMiddleware<ChoreographyMiddleware>(options);
+        }
     }
 }
