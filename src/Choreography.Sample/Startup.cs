@@ -48,7 +48,7 @@ namespace Choreography.Sample
                 endpoints.MapControllers();
             });
 
-            app.UseChoreographyUI();
+            app.UseChoreographyUI(options => options.DocumentTitle = "Choreography");
         }
     }
 }
