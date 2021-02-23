@@ -25,7 +25,7 @@
 
 	<ItemGroup>
 		<EmbeddedResource Include="index.html" />
-		<EmbeddedResource Include="node_modules/bootstrap/**/*" Exclude="**/*/*.map;**/*/*.json;**/*/*.md" />
+		<EmbeddedResource Include="node_modules/**/*" Exclude="**/*/*.map;**/*/*.json;**/*/*.md" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">

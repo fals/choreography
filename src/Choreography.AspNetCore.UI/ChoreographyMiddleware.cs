@@ -23,7 +23,7 @@ namespace Choreography.AspNetCore.UI
 {
     public class ChoreographyMiddleware
     {
-        private const string EmbeddedFileNamespace = "Choreography.AspNetCore.UI.node_modules.bootstrap";
+        private const string EmbeddedFileNamespace = "Choreography.AspNetCore.UI.node_modules";
 
         private readonly ChoreographyOptions _options;
         private readonly StaticFileMiddleware _staticFileMiddleware;
