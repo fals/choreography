@@ -2,9 +2,10 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <link href="./bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="./jquery/dist/jquery.js"></script>
     <meta charset="utf-8" />
+    <script src="./jquery/dist/jquery.js"></script>
+    <link href="./bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="./bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <title>%(DocumentTitle)</title>
 </head>
 <body>
@@ -13,6 +14,25 @@
             <span class="navbar-brand mb-0 h1">%(DocumentTitle)</span>
         </div>
     </nav>
-    <script src="./bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <div class="container-fluid">
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Collapsible Group Item #1
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        %(Description)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

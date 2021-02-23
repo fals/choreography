@@ -27,18 +27,20 @@ namespace Choreography.AspNetCore.UI
 
         private readonly ChoreographyOptions _options;
         private readonly StaticFileMiddleware _staticFileMiddleware;
+        private readonly IChoreographyDescriptor _choreographyDescriptor;
         private readonly JsonSerializerOptions _jsonSerializerOptions;
 
         public ChoreographyMiddleware(
             RequestDelegate next,
             IWebHostEnvironment hostingEnv,
             ILoggerFactory loggerFactory,
-            ChoreographyOptions options)
+            ChoreographyOptions options,
+            IChoreographyDescriptor choreographyDescriptor)
         {
             _options = options ?? new ChoreographyOptions();
 
+            _choreographyDescriptor = choreographyDescriptor;
             _staticFileMiddleware = CreateStaticFileMiddleware(next, hostingEnv, loggerFactory, options);
-
             _jsonSerializerOptions = new JsonSerializerOptions();
             _jsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
             _jsonSerializerOptions.IgnoreNullValues = true;
@@ -109,11 +111,13 @@ namespace Choreography.AspNetCore.UI
 
         private IDictionary<string, string> GetIndexArguments()
         {
+            var description = _choreographyDescriptor.GetTypeInfos();
+
             return new Dictionary<string, string>()
             {
                 { "%(DocumentTitle)", _options.DocumentTitle },
                 { "%(HeadContent)", _options.HeadContent },
-                //{ "%(ConfigObject)", JsonSerializer.Serialize(_options.ConfigObject, _jsonSerializerOptions) }
+                { "%(Description)", JsonSerializer.Serialize(description, _jsonSerializerOptions) }
             };
         }
     }

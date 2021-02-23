@@ -8,6 +8,21 @@ namespace Microsoft.AspNetCore.Builder
     public static class ChoreographyExtensions
     {
         /// <summary>
+        /// Register the default ChoreographyDescriptor to generate the type list
+        /// </summary>
+        /// <param name="services">IServiceCollection</param>
+        /// <returns>IServiceCollection</returns>
+        public static IServiceCollection AddChoreographyDescriptor<T>(this IServiceCollection services)
+        {
+            services.AddSingleton<IChoreographyDescriptor, ChoreographyDescriptor>(o =>
+            {
+                return new ChoreographyDescriptor(typeof(T));
+            });
+
+            return services;
+        }
+
+        /// <summary>
         /// Register the ChoreographyUI middleware with provided options
         /// </summary>
         public static IApplicationBuilder UseChoreographyUI(this IApplicationBuilder app, ChoreographyOptions options)
