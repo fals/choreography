@@ -6,7 +6,7 @@
 		<NoWarn>$(NoWarn);1591</NoWarn>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<AssemblyName>Choreography.AspNetCore.UI</AssemblyName>
-		<!--<AssemblyOriginatorKeyFile>Swashbuckle.AspNetCore.SwaggerUI.snk</AssemblyOriginatorKeyFile>-->
+		<!--<AssemblyOriginatorKeyFile>Choreography.AspNetCore.UI.snk</AssemblyOriginatorKeyFile>-->
 		<!--<SignAssembly Condition="'$(OS)'=='Windows_NT'">true</SignAssembly>-->
 		<PackageId>Choreography.AspNetCore.UI</PackageId>
 		<PackageTags>choreography;documentation;discovery;help;events;aspnet;aspnetcore;eda;eventdriven</PackageTags>
