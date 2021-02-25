@@ -17,10 +17,31 @@ namespace Choreography.AspNetCore.UI
         {
             var types = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(s => s.GetTypes())
-                .Where(p => _referenceType.IsAssignableFrom(p))
-                .Select(t => new ChoreographyTypeInfo()
+                .Where(p => _referenceType.IsAssignableFrom(p) && p.IsAbstract == false && p.IsInterface == false)
+                .Select((t) =>
                 {
-                    Name = t.Name
+                    var @object = Activator.CreateInstance(t);
+
+                    var propertyInfo = @object.GetType().GetProperties();
+                    foreach (var property in propertyInfo)
+                    {
+                        try
+                        {
+                            if (property.PropertyType.IsAssignableFrom(typeof(string)))
+                                property.SetValue(@object, "string");
+                            else
+                                property.SetValue(@object, Activator.CreateInstance(property.PropertyType));
+                        }
+                        catch (Exception)
+                        {
+                        }
+                    }
+
+                    return new ChoreographyTypeInfo()
+                    {
+                        Name = t.Name,
+                        Object = @object
+                    };
                 });
 
             return types;

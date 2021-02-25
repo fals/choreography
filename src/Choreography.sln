@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Choreography.AspNetCore.UI", "Choreography.AspNetCore.UI\Choreography.AspNetCore.UI.csproj", "{7FB2F854-C34D-4951-A5A6-8D4F40CBDBC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Choreography.Sample", "Choreography.Sample\Choreography.Sample.csproj", "{A9DDB75F-6E86-439B-AD73-290B4FE7263A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Choreography.Sample", "Choreography.Sample\Choreography.Sample.csproj", "{A9DDB75F-6E86-439B-AD73-290B4FE7263A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

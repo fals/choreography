@@ -9,5 +9,9 @@
         /// The short name of that type
         /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// The event object
+        /// </summary>
+        public object Object { get; set; }
     }
 }

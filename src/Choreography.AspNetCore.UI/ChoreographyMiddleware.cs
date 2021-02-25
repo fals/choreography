@@ -43,7 +43,7 @@ namespace Choreography.AspNetCore.UI
             _staticFileMiddleware = CreateStaticFileMiddleware(next, hostingEnv, loggerFactory, options);
             _jsonSerializerOptions = new JsonSerializerOptions();
             _jsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-            _jsonSerializerOptions.IgnoreNullValues = true;
+            _jsonSerializerOptions.IgnoreNullValues = false;
             _jsonSerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase, false));
         }
 
@@ -117,7 +117,7 @@ namespace Choreography.AspNetCore.UI
             {
                 { "%(DocumentTitle)", _options.DocumentTitle },
                 { "%(HeadContent)", _options.HeadContent },
-                { "%(Description)", JsonSerializer.Serialize(description, _jsonSerializerOptions) }
+                { "%(Schema)", JsonSerializer.Serialize(description, _jsonSerializerOptions) }
             };
         }
     }

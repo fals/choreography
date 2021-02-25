@@ -1,6 +1,6 @@
+using Choreography.Sample.Events;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,7 +27,7 @@ namespace Choreography.Sample
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Choreography.Sample", Version = "v1" });
             });
 
-            services.AddChoreographyDescriptor<ControllerBase>();
+            services.AddChoreographyDescriptor<IEvent>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

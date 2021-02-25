@@ -16,23 +16,32 @@
     </nav>
 
     <div class="container-fluid">
-        <div class="accordion" id="accordionExample">
-            <div class="card">
-                <div class="card-header" id="headingOne">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Collapsible Group Item #1
-                        </button>
-                    </h2>
-                </div>
-
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <div class="card-body">
-                        %(Description)
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div id="list-container" class="accordion"></div>
     </div>
+    <script type="text/javascript">
+        let schema = JSON.parse('%(Schema)');
+        let container = document.getElementById('list-container');
+
+        for (let i = 0; i < schema.length; i++) {
+            let type = schema[i];
+            let show = i == 0 ? 'show' : '';
+            let template = `<div class="card">
+                    <div class="card-header" id="h-${type.name}">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse-${type.name}" aria-expanded="true" aria-controls="collapseOne">
+                                ${type.name}
+                            </button>
+                        </h2>
+                    </div>
+
+                    <div id="collapse-${type.name}" class="collapse ${show}" aria-labelledby="h-${type.name}" data-parent="#list-container">
+                        <div class="card-body">
+                            ${JSON.stringify(type.object)}
+                        </div>
+                    </div>
+                </div>`;
+            container.insertAdjacentHTML('beforeend', template);
+        }
+    </script>
 </body>
 </html>
