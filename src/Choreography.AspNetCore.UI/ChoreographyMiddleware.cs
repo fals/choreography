@@ -67,6 +67,12 @@ namespace Choreography.AspNetCore.UI
                 return;
             }
 
+            if (httpMethod == "GET" && Regex.IsMatch(path, $"^/{Regex.Escape(_options.RoutePrefix)}/?choreography.css$", RegexOptions.IgnoreCase))
+            {
+                await RespondWithCss(httpContext.Response);
+                return;
+            }
+
             await _staticFileMiddleware.Invoke(httpContext);
         }
 
@@ -89,6 +95,19 @@ namespace Choreography.AspNetCore.UI
         {
             response.StatusCode = 301;
             response.Headers["Location"] = location;
+        }
+
+        private async Task RespondWithCss(HttpResponse response)
+        {
+            response.StatusCode = 200;
+            response.ContentType = "text/css";
+
+            using (var stream = _options.CssStream())
+            {
+                var cssBuilder = new StringBuilder(new StreamReader(stream).ReadToEnd());
+
+                await response.WriteAsync(cssBuilder.ToString(), Encoding.UTF8);
+            }
         }
 
         private async Task RespondWithIndexHtml(HttpResponse response)
@@ -117,6 +136,8 @@ namespace Choreography.AspNetCore.UI
             {
                 { "%(DocumentTitle)", _options.DocumentTitle },
                 { "%(HeadContent)", _options.HeadContent },
+                { "%(MessageBroker)", _options.MessageBroker },
+                { "%(TopicName)", _options.TopicName },
                 { "%(Schema)", JsonSerializer.Serialize(description, _jsonSerializerOptions) }
             };
         }

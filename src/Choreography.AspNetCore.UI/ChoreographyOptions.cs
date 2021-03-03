@@ -19,12 +19,26 @@ namespace Choreography.AspNetCore.UI
         /// <summary>
         /// Gets or sets a Stream function for retrieving the choreography-ui page
         /// </summary>
-        public Func<Stream> IndexStream { get; set; } = () => typeof(ChoreographyOptions).GetTypeInfo().Assembly
+        internal Func<Stream> IndexStream { get; set; } = () => typeof(ChoreographyOptions).GetTypeInfo().Assembly
             .GetManifestResourceStream("Choreography.AspNetCore.UI.index.html");
+
+        /// <summary>
+        /// Gets or sets a Stream function for retrieving the choreography-ui page
+        /// </summary>
+        internal Func<Stream> CssStream { get; set; } = () => typeof(ChoreographyOptions).GetTypeInfo().Assembly
+            .GetManifestResourceStream("Choreography.AspNetCore.UI.choreography.css");
 
         /// <summary>
         /// Gets or sets additional content to place in the head of the choreography-ui page
         /// </summary>
         public string HeadContent { get; set; } = "";
+        /// <summary>
+        /// Gets or sets additional content about the message broker where messages are produced, to place in of the choreography-ui page
+        /// </summary>
+        public string MessageBroker { get; set; }
+        /// <summary>
+        /// Gets or sets additional content about the topic where messages are produced, to place in of the choreography-ui page
+        /// </summary>
+        public string TopicName { get; set; }
     }
 }

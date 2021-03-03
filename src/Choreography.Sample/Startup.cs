@@ -51,7 +51,13 @@ namespace Choreography.Sample
                 endpoints.MapControllers();
             });
 
-            app.UseChoreographyUI(options => options.DocumentTitle = "Choreography");
+            app.UseChoreographyUI(options =>
+            {
+                options.HeadContent = "Choreography UI";
+                options.MessageBroker = "choreography.mybroker.com";
+                options.TopicName = "choreography-topic";
+                options.DocumentTitle = "Choreography";
+            });
         }
     }
 }

@@ -21,11 +21,13 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <None Remove="index.html" />
+	  <None Remove="node_modules\bootstrap\dist\css\choreography.css" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<EmbeddedResource Include="index.html" />
-		<EmbeddedResource Include="node_modules/**/*" Exclude="**/*/*.map;**/*/*.json;**/*/*.md" />
+		<EmbeddedResource Include="choreography.css" />
+		<EmbeddedResource Include="node_modules/**/*" Exclude="**/*/*.map;**/*/*.json;**/*/*.md;**/*/*.scss" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
