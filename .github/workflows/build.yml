@@ -24,7 +24,7 @@ jobs:
       with:
         node-version: '14'
         check-latest: true
-      run: npm install --force
+    - run: npm install --force
     - name: Build
       run: dotnet build ./src/Choreography.sln --no-restore
     # - name: Test
