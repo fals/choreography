@@ -13,6 +13,7 @@
 		<PackageProjectUrl>https://github.com/fals/choreography</PackageProjectUrl>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/fals/choreography.git</RepositoryUrl>
+		<VersionPrefix>0.0.1</VersionPrefix>
 	</PropertyGroup>
 
 	<!-- Use Visual Studio npm package if it is installed. -->
