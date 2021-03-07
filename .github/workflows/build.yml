@@ -24,7 +24,7 @@ jobs:
     # - name: Test
     #   run: dotnet test --no-build --verbosity normal
     - name: Pack
-      run: dotnet pack --no-build --configuration --version-suffix "alpha-${env:BUILD_NUMBER}" Release ./src/Choreography.AspNetCore.UI/Choreography.AspNetCore.UI.csproj --output .
+      run: dotnet pack --no-build --configuration Release ./src/Choreography.AspNetCore.UI/Choreography.AspNetCore.UI.csproj --version-suffix "alpha-${env:BUILD_NUMBER}" --output .
     - name: Publish Nuget.org
       run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.PUBLISH_TO_NUGET_ORG}} --skip-duplicate
     # - name: Add Github Source
