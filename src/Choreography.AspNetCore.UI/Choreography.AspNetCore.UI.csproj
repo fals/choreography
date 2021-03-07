@@ -14,6 +14,7 @@
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/fals/choreography.git</RepositoryUrl>
 		<VersionPrefix>0.0.1</VersionPrefix>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 
 	<!-- Use Visual Studio npm package if it is installed. -->
@@ -21,8 +22,8 @@
 		<Path>$(Path)$(VsInstallRoot)\Web\External\;</Path>
 	</PropertyGroup>
 	<ItemGroup>
-	  <None Remove="index.html" />
-	  <None Remove="node_modules\bootstrap\dist\css\choreography.css" />
+		<None Remove="index.html" />
+		<None Remove="node_modules\bootstrap\dist\css\choreography.css" />
 	</ItemGroup>
 
 	<ItemGroup>
