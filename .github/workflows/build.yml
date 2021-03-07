@@ -19,6 +19,12 @@ jobs:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run: dotnet restore ./src/Choreography.sln
+    - uses: actions/setup-node@v2
+    - name: Setup nodejs
+      with:
+        node-version: '14'
+        check-latest: true
+    - run: npm install --force
     - name: Build
       run: dotnet build ./src/Choreography.sln --no-restore
     # - name: Test

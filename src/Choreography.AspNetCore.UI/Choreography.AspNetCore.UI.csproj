@@ -43,7 +43,7 @@
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
-	<Target Name="NpmInstall" BeforeTargets="Build">
+	<Target Name="NpmInstall" BeforeTargets="Build" Condition="'$(Configuration)' == 'Debug'">
 		<Exec Command="npm ci" EnvironmentVariables="PATH=$(Path.Replace(';', '%3B'))" ContinueOnError="true">
 			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
 		</Exec>
