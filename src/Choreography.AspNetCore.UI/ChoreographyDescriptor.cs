@@ -34,6 +34,7 @@ namespace Choreography.AspNetCore.UI
                         }
                         catch (Exception)
                         {
+                            // I know working on that
                         }
                     }
 
