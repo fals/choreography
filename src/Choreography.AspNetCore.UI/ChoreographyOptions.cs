@@ -29,6 +29,12 @@ namespace Choreography.AspNetCore.UI
             .GetManifestResourceStream("Choreography.AspNetCore.UI.choreography.css");
 
         /// <summary>
+        /// Gets or sets a Stream function for retrieving the choreography-ui javascript lib
+        /// </summary>
+        internal Func<Stream> JsStream { get; set; } = () => typeof(ChoreographyOptions).GetTypeInfo().Assembly
+            .GetManifestResourceStream("Choreography.AspNetCore.UI.choreography-ui.js");
+
+        /// <summary>
         /// Gets or sets additional content to place in the head of the choreography-ui page
         /// </summary>
         public string HeadContent { get; set; } = "";

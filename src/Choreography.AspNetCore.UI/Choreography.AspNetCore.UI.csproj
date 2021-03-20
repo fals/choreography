@@ -29,6 +29,7 @@
 	<ItemGroup>
 		<EmbeddedResource Include="index.html" />
 		<EmbeddedResource Include="choreography.css" />
+		<EmbeddedResource Include="choreography-ui.js" />
 		<EmbeddedResource Include="node_modules/**/*" Exclude="**/*/*.map;**/*/*.json;**/*/*.md;**/*/*.scss" />
 	</ItemGroup>
 

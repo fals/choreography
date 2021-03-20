@@ -73,6 +73,12 @@ namespace Choreography.AspNetCore.UI
                 return;
             }
 
+            if (httpMethod == "GET" && Regex.IsMatch(path, $"^/{Regex.Escape(_options.RoutePrefix)}/?choreography-ui.js$", RegexOptions.IgnoreCase))
+            {
+                await RespondWithJs(httpContext.Response);
+                return;
+            }
+
             await _staticFileMiddleware.Invoke(httpContext);
         }
 
@@ -110,6 +116,19 @@ namespace Choreography.AspNetCore.UI
             }
         }
 
+        private async Task RespondWithJs(HttpResponse response)
+        {
+            response.StatusCode = 200;
+            response.ContentType = "text/javascript";
+
+            using (var stream = _options.JsStream())
+            {
+                var jsBuilder = new StringBuilder(new StreamReader(stream).ReadToEnd());
+
+                await response.WriteAsync(jsBuilder.ToString(), Encoding.UTF8);
+            }
+        }
+
         private async Task RespondWithIndexHtml(HttpResponse response)
         {
             response.StatusCode = 200;
@@ -117,7 +136,6 @@ namespace Choreography.AspNetCore.UI
 
             using (var stream = _options.IndexStream())
             {
-                // Inject arguments before writing to response
                 var htmlBuilder = new StringBuilder(new StreamReader(stream).ReadToEnd());
                 foreach (var entry in GetIndexArguments())
                 {

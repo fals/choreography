@@ -29,7 +29,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ### Configure UI
 
-After that enable the UI using the Configure
+Add to your `Startup.cs` file to `Configure` the UI configuration.
 
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -63,10 +63,10 @@ You shall see the UI like below.
 
 ## Limitations
 
-- Display only JSON from Event
-- Do not support envelop style like [CloudEvents]([(https://github.com/cloudevents/spec)
-- Generated JSON is shallow, only directly properties generated
-- Generated JSON do not display all display values as intended
+- Displays only JSON from Event
+- Doesn't support envelop style like [CloudEvents](https://github.com/cloudevents/spec)
+- Generated JSON is shallow, only first level properties generated
+- Generated JSON doesn't display all display values as intended
 - UI still need some usability love
 - This is a very basic PoC, lack unit tests
 
@@ -76,7 +76,8 @@ This project still experimental, I want community feedback, but here it goes wha
 
 Version | Feature
 --- | ---
-*aplha* | Gather community feedback about the service, and it real value
-*beta* | Based on community feedback and known limitations and issue, start a wide use of the package
+*alpha* | Gather community feedback about the idea
+*beta* | Based on community feedback and known limitations fix issues
 *1.0.0* | Display the event in multi-format standards such XML, C#, Typescript and others to allow fast copy and paste from the ui to consume the event
+*1.5.0* | Include XML Comments in the event type descriptor 
 *2.x.x* | Provide a CLI to generate typed code for consumers, probably a `dotnet tool`
