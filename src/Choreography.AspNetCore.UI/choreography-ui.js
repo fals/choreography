@@ -14,7 +14,7 @@
         container.classList.add("accordion");
 
         for (let i = 0; i < this.schema.length; i++) {
-            let type = schema[i];
+            let type = this.schema[i];
             let show = i == 0 ? 'show' : '';
             let template = `<div class="card">
                             <div class="card-header" id="h-${type.name}">
@@ -25,7 +25,7 @@
                                 </h2>
                             </div>
 
-                            <div id="collapse-${type.name}" class="collapse ${show}" aria-labelledby="h-${type.name}" data-parent="#list-container">
+                            <div id="collapse-${type.name}" class="collapse ${show}" aria-labelledby="h-${type.name}" data-parent="#choreography-ui">
                                 <div class="card-body">
                                     <pre id="json-${type.name}">${JSON.stringify(type.object, null, 2)}</pre>
                                 </div>
