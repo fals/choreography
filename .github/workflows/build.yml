@@ -23,6 +23,6 @@ jobs:
       - name: Test
         run: dotnet test ./src/Choreography.sln --no-build --verbosity normal
       - name: Pack
-        run: dotnet pack --configuration Release ./src/Choreography.AspNetCore.UI/Choreography.AspNetCore.UI.csproj --version-suffix "-${GITHUB_RUN_NUMBER}" --output .
+        run: dotnet pack --configuration Release ./src/Choreography.AspNetCore.UI/Choreography.AspNetCore.UI.csproj --version-suffix "ci-${GITHUB_RUN_NUMBER}" --output .
       - name: Publish Nuget.org
         run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.PUBLISH_TO_NUGET_ORG}} --skip-duplicate
