@@ -20,13 +20,9 @@ jobs:
         run: dotnet restore ./src/Choreography.sln
       - name: Build
         run: dotnet build ./src/Choreography.sln --no-restore
-      # - name: Test
-      #   run: dotnet test --no-build --verbosity normal
+      - name: Test
+        run: dotnet test --no-build --verbosity normal
       - name: Pack
-        run: dotnet pack --configuration Release ./src/Choreography.AspNetCore.UI/Choreography.AspNetCore.UI.csproj --version-suffix "1.0.${GITHUB_RUN_NUMBER}" --output .
+        run: dotnet pack --configuration Release ./src/Choreography.AspNetCore.UI/Choreography.AspNetCore.UI.csproj --version-suffix "${GITHUB_RUN_NUMBER}" --output .
       - name: Publish Nuget.org
         run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.PUBLISH_TO_NUGET_ORG}} --skip-duplicate
-    # - name: Add Github Source
-    #   run: dotnet nuget add source --username fals --password ${{secrets.PUBLISH_TO_GITHUB_COM}} --name github https://nuget.pkg.github.com/choreography/index.json
-    # - name: Publish Nuget Github
-    #   run: dotnet nuget push *.nupkg --source github --skip-duplicate

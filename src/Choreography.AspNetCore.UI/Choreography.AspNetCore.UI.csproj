@@ -13,7 +13,7 @@
 		<PackageProjectUrl>https://github.com/fals/choreography</PackageProjectUrl>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/fals/choreography.git</RepositoryUrl>
-		<VersionPrefix>0.0.1</VersionPrefix>
+		<VersionPrefix>1.0.0</VersionPrefix>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 
