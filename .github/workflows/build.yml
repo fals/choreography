@@ -21,7 +21,7 @@ jobs:
       - name: Build
         run: dotnet build ./src/Choreography.sln --no-restore
       - name: Test
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test ./src/Choreography.sln --no-build --verbosity normal
       - name: Pack
         run: dotnet pack --configuration Release ./src/Choreography.AspNetCore.UI/Choreography.AspNetCore.UI.csproj --version-suffix "${GITHUB_RUN_NUMBER}" --output .
       - name: Publish Nuget.org
