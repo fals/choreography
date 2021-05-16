@@ -27,11 +27,11 @@
 
                             <div id="collapse-${type.name}" class="collapse ${show}" aria-labelledby="h-${type.name}" data-parent="#choreography-ui">
                                 <div class="card-body">
-                                    <pre id="json-${type.name}">${JSON.stringify(type.object, null, 2)}</pre>
+                                    <pre id="json-${type.name}">${type.object}</pre>
                                 </div>
                             </div>
                         </div>`;
-            container.insertAdjacentHTML('beforeend', template);
+            container.insertAdjacentHTML('afterbegin', template);
         }
     }
 }

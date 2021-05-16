@@ -63,21 +63,21 @@ You shall see the UI like below.
 
 ## Limitations
 
-- Displays only JSON from Event
-- Doesn't support envelop style like [CloudEvents](https://github.com/cloudevents/spec)
-- Generated JSON is shallow, only first level properties generated
-- Generated JSON doesn't display all display values as intended
 - UI still need some usability love
-- This is a very basic PoC, lack unit tests
 
 ## Expected Roadmap
 
 This project still experimental, I want community feedback, but here it goes what I'm planning to do:
 
-Version | Feature
---- | ---
-*alpha* | Gather community feedback about the idea
-*beta* | Based on community feedback and known limitations fix issues
-*1.0.0* | Display the event in multi-format standards such XML, C#, Typescript and others to allow fast copy and paste from the ui to consume the event
-*1.5.0* | Include XML Comments in the event type descriptor 
-*2.x.x* | Provide a CLI to generate typed code for consumers, probably a `dotnet tool`
+Status | Version | Feature
+--- | --- | ---
+✅ | *alpha* | Gather community feedback about the idea
+✅ | *beta* | Based on community feedback and known limitations fix issues
+✅ | *1.0.0* | Display the event as C# class
+➖ | *1.1.0* | Copy buttom for event
+➖ | *1.2.0* | C# Symtax Hightlight
+➖ | *1.3.0* | Distinguish Consumed and Produced events
+➖ | *1.4.0* | Provide a JSON endpoint for the Schema
+➖ | *1.5.0* | Include XML Comments in the event type descriptor
+➖ | *1.5.0* | Improve Configuration with more extension options
+➖ | *2.x.x* | CLI to generate typed code for consumers, probably a `dotnet tool`

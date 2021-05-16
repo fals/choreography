@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="utf-8" />
     <title>%(DocumentTitle)</title>
@@ -12,6 +13,7 @@
     <script src="./bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="choreography-ui.js"></script>
 </head>
+
 <body>
     <nav class="navbar navbar-dark bg-ligh">
         <a class="navbar-brand mb-0 h1" href="#">
@@ -22,19 +24,22 @@
 
     <div class="w-75 container-fluid">
         <p>
-            <h3>%(HeadContent)</h3>
-            <h4>Message Broker:  <span class="badge badge-light">%(MessageBroker)</span></h4>
-            <h5>Topic/Queue: <span class="badge badge-info">%(TopicName)</span></h5>
+        <h3>%(HeadContent)</h3>
+        <h4>Message Broker: <span class="badge badge-light">%(MessageBroker)</span></h4>
+        <h5>Topic/Queue: <span class="badge badge-info">%(TopicName)</span></h5>
         </p>
         <div class="alert alert-danger" role="alert">
-            This project still experimental and breaking changes might happen, for more information: <a href="https://github.com/fals/choreography">https://github.com/fals/choreography</a>
+            This project still experimental and breaking changes might happen, for more information: <a
+                href="https://github.com/fals/choreography">https://github.com/fals/choreography</a>
         </div>
         <div id="choreography-ui"></div>
     </div>
     <script type="text/javascript">
-        let schema = JSON.parse('%(Schema)');
+        let rawString = String.raw`%(Schema)`;
+        let schema = JSON.parse(rawString);
         let ui = new ChoreographyUi(schema);
         ui.show();
     </script>
 </body>
+
 </html>

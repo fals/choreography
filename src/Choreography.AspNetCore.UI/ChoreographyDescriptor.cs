@@ -7,10 +7,12 @@ namespace Choreography.AspNetCore.UI
     public class ChoreographyDescriptor : IChoreographyDescriptor
     {
         private readonly Type _referenceType;
+        private readonly CSharpChoreographyDescriptor _descriptor;
 
         public ChoreographyDescriptor(Type referenceType)
         {
             _referenceType = referenceType;
+            _descriptor = new CSharpChoreographyDescriptor();
         }
 
         public IEnumerable<ChoreographyTypeInfo> GetTypeInfos()
@@ -20,29 +22,7 @@ namespace Choreography.AspNetCore.UI
                 .Where(p => _referenceType.IsAssignableFrom(p) && p.IsAbstract == false && p.IsInterface == false)
                 .Select((t) =>
                 {
-                    var @object = Activator.CreateInstance(t);
-
-                    var propertyInfo = @object.GetType().GetProperties();
-                    foreach (var property in propertyInfo)
-                    {
-                        try
-                        {
-                            if (property.PropertyType.IsAssignableFrom(typeof(string)))
-                                property.SetValue(@object, "string");
-                            else
-                                property.SetValue(@object, Activator.CreateInstance(property.PropertyType));
-                        }
-                        catch (Exception)
-                        {
-                            // I know working on that
-                        }
-                    }
-
-                    return new ChoreographyTypeInfo()
-                    {
-                        Name = t.Name,
-                        Object = @object
-                    };
+                    return _descriptor.GetTypeInfo(t);
                 });
 
             return types;
