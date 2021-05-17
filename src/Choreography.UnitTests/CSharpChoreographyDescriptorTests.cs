@@ -9,6 +9,7 @@ namespace Choreography.UnitTests
     {
         internal class CSharpClass
         {
+            public decimal Decimal { get; set; }
             public Guid Guid { get; set; }
             public Guid? NullableGuid { get; set; }
             public string String { get; set; }
@@ -80,6 +81,7 @@ namespace Choreography.UnitTests
         }
 
         [Theory]
+        [InlineData("public System.Decimal Decimal { get; set; }")]
         [InlineData("public Guid Guid { get; set; }")]
         [InlineData("public Guid? NullableGuid { get; set; }")]
         [InlineData("public string String { get; set; }")]

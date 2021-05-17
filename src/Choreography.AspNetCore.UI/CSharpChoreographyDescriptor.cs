@@ -125,6 +125,7 @@ namespace Choreography.AspNetCore.UI
                             break;
                         }
                     default:
+                        typeName = propertyType.FullName;
                         break;
                 }
             }
